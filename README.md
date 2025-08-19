@@ -2,16 +2,15 @@
   <a href="https://tripss.github.io/nestjs-query" target="blank"><img src="https://tripss.github.io/nestjs-query/img/logo.svg" width="120" alt="Nestjs-query Logo" /></a>
 </p>
 
-[![Test](https://github.com/TriPSs/nestjs-query/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/TriPSs/nestjs-query/actions/workflows/test.yml)
-[![codecov](https://codecov.io/gh/TriPSs/nestjs-query/branch/master/graph/badge.svg?token=29EX71ID2P)](https://codecov.io/gh/TriPSs/nestjs-query)
-[![Known Vulnerabilities](https://snyk.io/test/github/tripss/nestjs-query/badge.svg?targetFile=package.json)](https://snyk.io/test/github/tripss/nestjs-query?targetFile=package.json)
-[![slack](https://img.shields.io/badge/slack-nestjsquery-brightgreen.svg?logo=slack)](https://join.slack.com/t/nestjsquery/shared_invite/zt-27dvu0tye-tOcAmeQ0PRSCEInW6P3h9g)
+**Important** - This fork is for personal reasons and changes and is not a replacement for [the maintained nestjs-query library](https://tripss.github.io/nestjs-query). If you wish to use the library, use the maintained version. NOT this one!!!
+
+That being said, if you wish to get a more enhanced GraphQL experience with discrimitated DTOs aka discriminated Unions, then you are welcome to also use the published core, graphql and typegoose libraries.  
 
 # nestjs-query
 
 Nestjs-Query is collection of packages to make crud for `graphql` easier.
 
-## Why?
+## Why? 
 
 While working on projects in nestjs it was very easy to get up and running with graphql however, there were many patterns that were common between the resolvers. In particular querying, sorting and paging.  
 
