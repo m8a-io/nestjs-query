@@ -1,6 +1,6 @@
 import { ExecutionContext } from '@nestjs/common'
 import { Args, ArgsType, Context, Parent, Resolver } from '@nestjs/graphql'
-import { AggregateQuery, AggregateResponse, Class, Filter, mergeFilter, QueryService } from '@m8a/nestjs-query-core'
+import { AggregateQuery, AggregateResponse, Class, Filter, mergeFilter, QueryService } from '@ptc-org/nestjs-query-core'
 
 import { OperationGroup } from '../../auth'
 import { getDTONames } from '../../common'
@@ -33,17 +33,17 @@ const AggregateRelationMixin =
     const commonResolverOpts = relation.aggregate || removeRelationOpts(relation)
     const relationDTO = relation.DTO
     const dtoName = getDTONames(DTOClass).baseName
-    const { baseName, baseNameLower } = getDTONames(relationDTO as Class<Relation>, {
+    const { baseName, baseNameLower } = getDTONames(relationDTO, {
       dtoName: relation.dtoName
     })
     const relationName = relation.relationName ?? baseNameLower
     const aggregateRelationLoaderName = `aggregate${baseName}For${dtoName}`
-    const aggregateLoader = new AggregateRelationsLoader<DTO, Relation>(relationDTO as Class<Relation>, relationName)
+    const aggregateLoader = new AggregateRelationsLoader<DTO, Relation>(relationDTO, relationName)
 
     @ArgsType()
-    class RelationQA extends AggregateArgsType(relationDTO as Class<Relation>) {}
+    class RelationQA extends AggregateArgsType(relationDTO) {}
 
-    const [AR] = AggregateResponseType(relationDTO as Class<Relation>, { prefix: `${dtoName}${baseName}` })
+    const [AR] = AggregateResponseType(relationDTO, { prefix: `${dtoName}${baseName}` })
 
     @Resolver(() => DTOClass, { isAbstract: true })
     class AggregateMixin extends Base {

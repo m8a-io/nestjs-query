@@ -1,6 +1,6 @@
 import { ExecutionContext } from '@nestjs/common'
 import { Args, ArgsType, Context, Parent, Resolver } from '@nestjs/graphql'
-import { Class, Filter, mergeQuery, QueryService } from '@m8a/nestjs-query-core'
+import { Class, Filter, mergeQuery, QueryService } from '@ptc-org/nestjs-query-core'
 
 import { OperationGroup } from '../../auth'
 import { getDTONames } from '../../common'
@@ -27,10 +27,10 @@ const ReadOneRelationMixin =
     }
     const commonResolverOpts = removeRelationOpts(relation)
     const relationDTO = relation.DTO
-    const { baseNameLower, baseName } = getDTONames(relationDTO as Class<Relation>, { dtoName: relation.dtoName })
+    const { baseNameLower, baseName } = getDTONames(relationDTO, { dtoName: relation.dtoName })
     const relationName = relation.relationName ?? baseNameLower
     const loaderName = `load${baseName}For${DTOClass.name}`
-    const findLoader = new FindRelationsLoader<DTO, Relation>(relationDTO as Class<Relation>, relationName)
+    const findLoader = new FindRelationsLoader<DTO, Relation>(relationDTO, relationName)
 
     @Resolver(() => DTOClass, { isAbstract: true })
     class ReadOneMixin extends Base {
@@ -89,16 +89,16 @@ const ReadManyRelationMixin =
     const commonResolverOpts = removeRelationOpts(relation)
     const relationDTO = relation.DTO
     const dtoName = getDTONames(DTOClass).baseName
-    const { baseNameLower, baseName } = getDTONames(relationDTO as Class<Relation>, { dtoName: relation.dtoName })
+    const { baseNameLower, baseName } = getDTONames(relationDTO, { dtoName: relation.dtoName })
     const relationName = relation.relationName ?? baseNameLower
     const relationLoaderName = `load${baseName}For${DTOClass.name}`
     const countRelationLoaderName = `count${baseName}For${DTOClass.name}`
-    const queryLoader = new QueryRelationsLoader<DTO, Relation>(relationDTO as Class<Relation>, relationName)
-    const countLoader = new CountRelationsLoader<DTO, Relation>(relationDTO as Class<Relation>, relationName)
+    const queryLoader = new QueryRelationsLoader<DTO, Relation>(relationDTO, relationName)
+    const countLoader = new CountRelationsLoader<DTO, Relation>(relationDTO, relationName)
     const connectionName = `${dtoName}${baseName}Connection`
 
     @ArgsType()
-    class RelationQA extends QueryArgsType(relationDTO as Class<Relation>, {
+    class RelationQA extends QueryArgsType(relationDTO, {
       ...relation,
       connectionName,
       disableKeySetPagination: true
