@@ -1,4 +1,4 @@
-import { Class } from '@m8a/nestjs-query-core'
+import { AbstractClass, Class } from '@m8a/nestjs-query-core'
 
 import { removeUndefinedValues } from '../../common'
 import { getQueryOptions } from '../../decorators'
@@ -15,8 +15,8 @@ import {
   StaticQueryType
 } from './query-args'
 
-const getMergedQueryOpts = <DTO>(DTOClass: Class<DTO>, opts?: QueryArgsTypeOpts<DTO>): QueryArgsTypeOpts<DTO> => {
-  const decoratorOpts = getQueryOptions(DTOClass)
+const getMergedQueryOpts = <DTO>(DTOClass: Class<DTO> | AbstractClass<DTO>, opts?: QueryArgsTypeOpts<DTO>): QueryArgsTypeOpts<DTO> => {
+  const decoratorOpts = getQueryOptions(DTOClass as Class<DTO>)
   return {
     ...DEFAULT_QUERY_OPTS,
     pagingStrategy: PagingStrategies.CURSOR,
@@ -31,28 +31,28 @@ export const isStaticQueryArgsType = <DTO>(obj: any): obj is StaticQueryType<DTO
   typeof obj === 'function' && 'PageType' in obj && 'SortType' in obj && 'FilterType' in obj
 
 export function QueryArgsType<DTO>(
-  DTOClass: Class<DTO>,
+  DTOClass: Class<DTO> | AbstractClass<DTO>,
   opts: OffsetQueryArgsTypeOpts<DTO>
 ): StaticQueryType<DTO, PagingStrategies.OFFSET>
 export function QueryArgsType<DTO>(
-  DTOClass: Class<DTO>,
+  DTOClass: Class<DTO> | AbstractClass<DTO>,
   opts: NonePagingQueryArgsTypeOpts<DTO>
 ): StaticQueryType<DTO, PagingStrategies.NONE>
 export function QueryArgsType<DTO>(
-  DTOClass: Class<DTO>,
+  DTOClass: Class<DTO> | AbstractClass<DTO>,
   opts: CursorQueryArgsTypeOpts<DTO>
 ): StaticQueryType<DTO, PagingStrategies.CURSOR>
-export function QueryArgsType<DTO>(DTOClass: Class<DTO>, opts?: QueryArgsTypeOpts<DTO>): StaticQueryType<DTO, PagingStrategies>
-export function QueryArgsType<DTO>(DTOClass: Class<DTO>, opts?: QueryArgsTypeOpts<DTO>): StaticQueryType<DTO, PagingStrategies> {
+export function QueryArgsType<DTO>(DTOClass: Class<DTO> | AbstractClass<DTO>, opts?: QueryArgsTypeOpts<DTO>): StaticQueryType<DTO, PagingStrategies>
+export function QueryArgsType<DTO>(DTOClass: Class<DTO> | AbstractClass<DTO>, opts?: QueryArgsTypeOpts<DTO>): StaticQueryType<DTO, PagingStrategies> {
   // override any options from the DTO with the options passed in
   const mergedOpts = getMergedQueryOpts(DTOClass, opts)
   if (mergedOpts.pagingStrategy === PagingStrategies.OFFSET) {
-    return createOffsetQueryArgs(DTOClass, mergedOpts)
+    return createOffsetQueryArgs(DTOClass as Class<DTO>, mergedOpts)
   }
 
   if (mergedOpts.pagingStrategy === PagingStrategies.NONE) {
-    return createNonePagingQueryArgsType(DTOClass, mergedOpts)
+    return createNonePagingQueryArgsType(DTOClass as Class<DTO>, mergedOpts)
   }
 
-  return createCursorQueryArgsType(DTOClass, mergedOpts)
+  return createCursorQueryArgsType(DTOClass as Class<DTO>, mergedOpts)
 }

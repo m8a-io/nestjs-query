@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 import { Test, TestingModule } from '@nestjs/testing'
 import { getDataSourceToken, TypeOrmModule } from '@nestjs/typeorm'
-import { NestjsQueryTypeOrmModule } from '@ptc-org/nestjs-query-typeorm'
+import { NestjsQueryTypeOrmModule } from '@m8a/nestjs-query-typeorm'
 import request from 'supertest'
 import { DataSource } from 'typeorm'
 

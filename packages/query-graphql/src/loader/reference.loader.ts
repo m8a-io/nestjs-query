@@ -1,5 +1,5 @@
 import { Logger } from '@nestjs/common'
-import { Class, Filter, QueryService } from '@ptc-org/nestjs-query-core'
+import { Class, Filter, QueryService } from '@m8a/nestjs-query-core'
 
 import { NestjsQueryDataloader } from './relations.loader'
 

@@ -1,6 +1,6 @@
 import { ExecutionContext } from '@nestjs/common'
 import { Args, ArgsType, Context, Parent, Resolver } from '@nestjs/graphql'
-import { AggregateQuery, AggregateResponse, Class, Filter, mergeFilter, QueryService } from '@ptc-org/nestjs-query-core'
+import { AggregateQuery, AggregateResponse, Class, Filter, mergeFilter, QueryService } from '@m8a/nestjs-query-core'
 
 import { OperationGroup } from '../../auth'
 import { getDTONames } from '../../common'
@@ -27,23 +27,24 @@ type AggregateRelationOpts<Relation> = ResolverRelation<Relation>
 const AggregateRelationMixin =
   <DTO, Relation>(DTOClass: Class<DTO>, relation: AggregateRelationOpts<Relation>) =>
   <B extends Class<ServiceResolver<DTO, QueryService<DTO, unknown, unknown>>>>(Base: B): B => {
+
     if (!relation.enableAggregate && !relation.aggregate?.enabled) {
       return Base
     }
     const commonResolverOpts = relation.aggregate || removeRelationOpts(relation)
     const relationDTO = relation.DTO
     const dtoName = getDTONames(DTOClass).baseName
-    const { baseName, baseNameLower } = getDTONames(relationDTO, {
+    const { baseName, baseNameLower } = getDTONames(relationDTO as Class<Relation>, {
       dtoName: relation.dtoName
     })
     const relationName = relation.relationName ?? baseNameLower
     const aggregateRelationLoaderName = `aggregate${baseName}For${dtoName}`
-    const aggregateLoader = new AggregateRelationsLoader<DTO, Relation>(relationDTO, relationName)
+    const aggregateLoader = new AggregateRelationsLoader<DTO, Relation>(relationDTO as Class<Relation>, relationName)
 
     @ArgsType()
-    class RelationQA extends AggregateArgsType(relationDTO) {}
+    class RelationQA extends AggregateArgsType(relationDTO as Class<Relation>) {}
 
-    const [AR] = AggregateResponseType(relationDTO, { prefix: `${dtoName}${baseName}` })
+    const [AR] = AggregateResponseType(relationDTO as Class<Relation>, { prefix: `${dtoName}${baseName}` })
 
     @Resolver(() => DTOClass, { isAbstract: true })
     class AggregateMixin extends Base {

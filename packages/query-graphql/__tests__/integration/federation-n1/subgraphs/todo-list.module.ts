@@ -4,7 +4,7 @@ import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { NestjsQueryTypeOrmModule } from '@ptc-org/nestjs-query-typeorm'
+import { NestjsQueryTypeOrmModule } from '@m8a/nestjs-query-typeorm'
 
 import { NestjsQueryGraphQLModule, PagingStrategies } from '../../../../src'
 import { TodoListDto } from '../dtos/todo-list.dto'
