@@ -1,5 +1,5 @@
 import { Provider } from '@nestjs/common'
-import { Class } from '@ptc-org/nestjs-query-core'
+import { Class } from '@m8a/nestjs-query-core'
 
 import { getHooksForType } from '../decorators'
 import { getHookToken, HookTypes } from '../hooks'

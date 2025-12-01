@@ -1,5 +1,5 @@
 import { getRepositoryToken } from '@nestjs/typeorm'
-import { getQueryServiceToken } from '@ptc-org/nestjs-query-core'
+import { getQueryServiceToken } from '@m8a/nestjs-query-core'
 import { DataSource } from 'typeorm'
 
 import { createTypeOrmQueryServiceProviders } from '../src/providers'

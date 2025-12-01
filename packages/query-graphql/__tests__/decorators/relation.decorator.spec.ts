@@ -7,7 +7,7 @@ import {
   PagingStrategies,
   Relation,
   UnPagedRelation
-} from '@ptc-org/nestjs-query-graphql'
+} from '@m8a/nestjs-query-graphql'
 import { RelationManyDecoratorOpts } from 'packages/query-graphql/src/decorators/relation.decorator'
 
 import {

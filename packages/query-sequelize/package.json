@@ -1,7 +1,7 @@
 {
-  "name": "@ptc-org/nestjs-query-sequelize",
+  "name": "@m8a/nestjs-query-sequelize",
   "version": "9.1.0",
-  "description": "Sequelize adapter for @ptc-org/nestjs-query-core",
+  "description": "Sequelize adapter for @m8a/nestjs-query-core",
   "homepage": "https://github.com/tripss/nestjs-query#readme",
   "bugs": {
     "url": "https://github.com/tripss/nestjs-query/issues"

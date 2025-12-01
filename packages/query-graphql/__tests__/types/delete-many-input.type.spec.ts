@@ -1,5 +1,5 @@
 import { Args, InputType, Int, ObjectType, Query, Resolver } from '@nestjs/graphql'
-import { DeleteManyInputType } from '@ptc-org/nestjs-query-graphql'
+import { DeleteManyInputType } from '@m8a/nestjs-query-graphql'
 import { plainToClass } from 'class-transformer'
 import { validateSync } from 'class-validator'
 

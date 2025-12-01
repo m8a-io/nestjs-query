@@ -1,7 +1,7 @@
 {
-  "name": "@ptc-org/nestjs-query-typegoose",
+  "name": "@m8a/nestjs-query-typegoose",
   "version": "9.1.0",
-  "description": "Typegoose adapter for @ptc-org/nestjs-query-core",
+  "description": "Typegoose adapter for @m8a/nestjs-query-core",
   "homepage": "https://github.com/tripss/nestjs-query#readme",
   "bugs": {
     "url": "https://github.com/tripss/nestjs-query/issues"

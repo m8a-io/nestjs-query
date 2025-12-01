@@ -1,4 +1,4 @@
-import { Class } from '@ptc-org/nestjs-query-core'
+import { Class } from '@m8a/nestjs-query-core'
 
 import { removeUndefinedValues } from '../../common'
 import { getQueryOptions } from '../../decorators'

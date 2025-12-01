@@ -1,5 +1,5 @@
 import { Complexity, FieldOptions } from '@nestjs/graphql'
-import { AbstractClass, Class } from '@ptc-org/nestjs-query-core'
+import { AbstractClass, Class } from '@m8a/nestjs-query-core'
 
 import { AuthorizerOptions } from '../../auth'
 import { DTONamesOpts } from '../../common'

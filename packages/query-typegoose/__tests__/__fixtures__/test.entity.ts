@@ -1,4 +1,4 @@
-import { ObjectId } from '@ptc-org/nestjs-query-graphql'
+import { ObjectId } from '@m8a/nestjs-query-graphql'
 import { mongoose, prop, Ref } from '@typegoose/typegoose'
 
 import { TestReference } from './test-reference.entity'

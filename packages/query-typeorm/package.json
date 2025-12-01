@@ -1,7 +1,7 @@
 {
-  "name": "@ptc-org/nestjs-query-typeorm",
+  "name": "@m8a/nestjs-query-typeorm",
   "version": "9.1.0",
-  "description": "Typeorm adapter for @ptc-org/nestjs-query-core",
+  "description": "Typeorm adapter for @m8a/nestjs-query-core",
   "homepage": "https://github.com/tripss/nestjs-query#readme",
   "bugs": {
     "url": "https://github.com/tripss/nestjs-query/issues"

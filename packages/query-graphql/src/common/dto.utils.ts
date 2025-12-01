@@ -1,5 +1,5 @@
 import { ID, ReturnTypeFuncValue } from '@nestjs/graphql'
-import { Class, lowerCaseFirst, upperCaseFirst } from '@ptc-org/nestjs-query-core'
+import { Class, lowerCaseFirst, upperCaseFirst } from '@m8a/nestjs-query-core'
 import { plural } from 'pluralize'
 
 import { getIDField } from '../decorators'

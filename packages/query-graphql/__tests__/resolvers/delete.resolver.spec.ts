@@ -1,5 +1,5 @@
 import { Field, InputType, Query, Resolver } from '@nestjs/graphql'
-import { DeleteManyResponse, Filter } from '@ptc-org/nestjs-query-core'
+import { DeleteManyResponse, Filter } from '@m8a/nestjs-query-core'
 import { PubSub } from 'graphql-subscriptions'
 import { PubSubAsyncIterableIterator } from 'graphql-subscriptions/dist/pubsub-async-iterable-iterator'
 import { anything, deepEqual, instance, mock, objectContaining, verify, when } from 'ts-mockito'

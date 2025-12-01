@@ -1,7 +1,7 @@
 import { ObjectType } from '@nestjs/graphql'
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
-import { Filter } from '@ptc-org/nestjs-query-core'
-import { FilterableField, FilterType } from '@ptc-org/nestjs-query-graphql'
+import { Filter } from '@m8a/nestjs-query-core'
+import { FilterableField, FilterType } from '@m8a/nestjs-query-graphql'
 import { plainToClass } from 'class-transformer'
 import { Document, FilterQuery, model } from 'mongoose'
 

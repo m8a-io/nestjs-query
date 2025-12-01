@@ -1,5 +1,5 @@
 import * as nestjsGraphQL from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { FilterableField } from '@m8a/nestjs-query-graphql'
 
 import { getFilterableFields } from '../../src/decorators'
 

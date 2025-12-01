@@ -1,5 +1,5 @@
 import { BadRequestException } from '@nestjs/common'
-import { AggregateQuery, AggregateQueryField, AggregateResponse } from '@ptc-org/nestjs-query-core'
+import { AggregateQuery, AggregateQueryField, AggregateResponse } from '@m8a/nestjs-query-core'
 import { camelCase } from 'camel-case'
 import { Document } from 'mongoose'
 

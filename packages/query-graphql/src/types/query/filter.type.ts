@@ -1,5 +1,5 @@
 import { Field, InputType, TypeMetadataStorage } from '@nestjs/graphql'
-import { Class, Filter, MapReflector, upperCaseFirst } from '@ptc-org/nestjs-query-core'
+import { Class, Filter, MapReflector, upperCaseFirst } from '@m8a/nestjs-query-core'
 import { Type } from 'class-transformer'
 import { ValidateNested } from 'class-validator'
 

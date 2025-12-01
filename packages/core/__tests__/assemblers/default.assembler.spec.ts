@@ -1,4 +1,4 @@
-import { DefaultAssembler } from '@ptc-org/nestjs-query-core'
+import { DefaultAssembler } from '@m8a/nestjs-query-core'
 import * as classTransformer from 'class-transformer'
 
 describe('DefaultAssembler', () => {

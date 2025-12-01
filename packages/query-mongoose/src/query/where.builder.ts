@@ -1,4 +1,4 @@
-import { Filter, FilterComparisons, FilterFieldComparison } from '@ptc-org/nestjs-query-core'
+import { Filter, FilterComparisons, FilterFieldComparison } from '@m8a/nestjs-query-core'
 import { Document, FilterQuery, Model as MongooseModel } from 'mongoose'
 
 import { ComparisonBuilder, EntityComparisonField } from './comparison.builder'

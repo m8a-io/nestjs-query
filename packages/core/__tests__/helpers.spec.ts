@@ -22,7 +22,7 @@ import {
   transformFilterComparisons,
   transformQuery,
   transformSort
-} from '@ptc-org/nestjs-query-core'
+} from '@m8a/nestjs-query-core'
 
 import { AggregateQuery } from '../src/interfaces/aggregate-query.interface'
 

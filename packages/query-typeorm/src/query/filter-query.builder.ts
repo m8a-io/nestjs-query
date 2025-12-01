@@ -7,7 +7,7 @@ import {
   Query,
   SelectRelation,
   SortField
-} from '@ptc-org/nestjs-query-core'
+} from '@m8a/nestjs-query-core'
 import merge from 'lodash.merge'
 import {
   DeleteQueryBuilder,

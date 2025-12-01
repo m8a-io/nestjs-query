@@ -1,4 +1,4 @@
-import { CommonFieldComparisonBetweenType } from '@ptc-org/nestjs-query-core'
+import { CommonFieldComparisonBetweenType } from '@m8a/nestjs-query-core'
 import { model, Types } from 'mongoose'
 
 import { ComparisonBuilder } from '../../src/query'

@@ -5,7 +5,7 @@ import {
   AggregateQueryGroupByField,
   AggregateResponse,
   GroupBy
-} from '@ptc-org/nestjs-query-core'
+} from '@m8a/nestjs-query-core'
 import { camelCase } from 'camel-case'
 import { Repository, SelectQueryBuilder } from 'typeorm'
 import { DriverUtils } from 'typeorm/driver/DriverUtils'

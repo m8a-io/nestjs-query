@@ -1,4 +1,4 @@
-import { SortDirection, SortNulls } from '@ptc-org/nestjs-query-core'
+import { SortDirection, SortNulls } from '@m8a/nestjs-query-core'
 
 describe('SortField', () => {
   it('should define SortDirection', () => {

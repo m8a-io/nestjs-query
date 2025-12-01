@@ -1,5 +1,5 @@
 import { ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { FilterableField } from '@m8a/nestjs-query-graphql'
 
 import { createFilterComparisonType } from '../../../src/types/query/field-comparison/field-comparison.factory'
 import { getOrCreateStringFieldComparison } from '../../../src/types/query/field-comparison/string-field-comparison.type'

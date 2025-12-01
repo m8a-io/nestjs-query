@@ -1,5 +1,5 @@
 import { DynamicModule, ForwardReference, Global, Module, Provider } from '@nestjs/common'
-import { AbstractClass, Assembler, Class, NestjsQueryCoreModule } from '@ptc-org/nestjs-query-core'
+import { AbstractClass, Assembler, Class, NestjsQueryCoreModule } from '@m8a/nestjs-query-core'
 
 import { DataLoaderOptions, dataLoaderOptionsToken } from './pipes/inject-data-loader-config.pipe'
 import { AutoResolverOpts, createAuthorizerProviders, createHookProviders, createResolvers } from './providers'

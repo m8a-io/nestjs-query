@@ -1,6 +1,6 @@
 import { BadRequestException, ExecutionContext } from '@nestjs/common'
 import { Context, Resolver, ResolveReference } from '@nestjs/graphql'
-import { Class, QueryService } from '@ptc-org/nestjs-query-core'
+import { Class, QueryService } from '@m8a/nestjs-query-core'
 
 import { getDTONames } from '../common'
 import { InjectDataLoaderConfig } from '../decorators/inject-dataloader-config.decorator'

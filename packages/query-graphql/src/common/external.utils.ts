@@ -3,7 +3,7 @@ import { EnumMetadata } from '@nestjs/graphql/dist/schema-builder/metadata'
 import { InterfaceMetadata } from '@nestjs/graphql/dist/schema-builder/metadata/interface.metadata'
 import { ObjectTypeMetadata } from '@nestjs/graphql/dist/schema-builder/metadata/object-type.metadata'
 import { LazyMetadataStorage } from '@nestjs/graphql/dist/schema-builder/storages/lazy-metadata.storage'
-import { Class } from '@ptc-org/nestjs-query-core'
+import { Class } from '@m8a/nestjs-query-core'
 
 import { UnregisteredObjectType } from '../types/type.errors'
 

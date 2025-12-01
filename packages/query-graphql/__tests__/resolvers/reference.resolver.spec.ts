@@ -1,6 +1,6 @@
 import { ExecutionContext } from '@nestjs/common'
 import { Query, Resolver } from '@nestjs/graphql'
-import { ReferenceResolver, ReferenceResolverOpts } from '@ptc-org/nestjs-query-graphql'
+import { ReferenceResolver, ReferenceResolverOpts } from '@m8a/nestjs-query-graphql'
 import { anything, when } from 'ts-mockito'
 
 import { createResolverFromNest, generateSchema, TestResolverDTO, TestService } from '../__fixtures__'
