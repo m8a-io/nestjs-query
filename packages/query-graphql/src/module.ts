@@ -21,6 +21,8 @@ export interface DiscriminatedDTO {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   CreateDTOClass?: Class<any>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  UpdateDTOClass?: Class<any>
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   AssemblerClass?: Class<Assembler<any, any, any, any, any, any>>
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ResolverClass?: Class<any>
@@ -147,6 +149,7 @@ export class NestjsQueryGraphQLModule {
           const baseOpts = {
             DTOClass: d.DTOClass,
             CreateDTOClass: d.CreateDTOClass,
+            UpdateDTOClass: d.UpdateDTOClass,
             read: { one: { name: lowerCaseName }, many: { name: `${lowerCaseName}s` } }
           }
 
