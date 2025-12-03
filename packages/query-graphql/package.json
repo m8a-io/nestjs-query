@@ -1,6 +1,6 @@
 {
   "name": "@m8a/nestjs-query-graphql",
-  "version": "9.2.1",
+  "version": "9.2.2",
   "description": "Nestjs graphql query adapter",
   "keywords": [
     "graphql",

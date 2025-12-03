@@ -1,6 +1,6 @@
 {
   "name": "@m8a/nestjs-query-typeorm",
-  "version": "9.2.1",
+  "version": "9.2.2",
   "description": "Typeorm adapter for @m8a/nestjs-query-core",
   "homepage": "https://github.com/tripss/nestjs-query#readme",
   "bugs": {
