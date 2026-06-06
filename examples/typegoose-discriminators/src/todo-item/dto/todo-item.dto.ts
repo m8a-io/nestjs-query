@@ -1,5 +1,7 @@
 import { ID, InterfaceType } from '@nestjs/graphql'
-import { FilterableField, IDField } from '@ptc-org/nestjs-query-graphql'
+import { FilterableField, IDField, Relation } from '@ptc-org/nestjs-query-graphql'
+
+import { LocationDTO } from '../../location/dto/location.dto'
 
 @InterfaceType({
   resolveType: async (obj: { documentType: string }) => {

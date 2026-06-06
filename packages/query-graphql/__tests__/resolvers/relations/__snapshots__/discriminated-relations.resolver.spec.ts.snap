@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Discriminated Relations Resolver should generate add and set mutations for discriminated DTOs 1`] = `
+"type TestConcreteDTO implements TestBaseDTO {
+  id: ID!
+  concreteField: String!
+}
+
+interface TestBaseDTO {
+  id: ID!
+}
+
+type Query {
+  test: TestConcreteDTO!
+}
+
+type Mutation {
+  addRelationsToTestConcreteDTO(input: AddRelationsToTestConcreteDTOInput!): TestConcreteDTO!
+  setRelationsOnTestConcreteDTO(input: SetRelationsOnTestConcreteDTOInput!): TestConcreteDTO!
+}
+
+input AddRelationsToTestConcreteDTOInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetRelationsOnTestConcreteDTOInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}"
+`;

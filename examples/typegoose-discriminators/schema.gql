@@ -140,50 +140,36 @@ type SubTaskAggregateResponse {
   max: SubTaskMaxAggregate
 }
 
-type TodoAppointment implements TodoItemDTO {
+type Tag {
   id: ID!
-  title: String!
-  completed: Boolean!
-  documentType: String!
-  dateTime: DateTime!
-  participants: [String!]!
-  subTasks(
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  createdBy: String
+  updatedBy: String
+  todoItemsAggregate(
+    """Filter to find records to aggregate on"""
+    filter: TodoItemDTOAggregateFilter
+  ): [TagTodoItemsAggregateResponse!]!
+  todoItems(
     """Limit or page results."""
     paging: CursorPaging! = {first: 10}
 
     """Specify to filter the records returned."""
-    filter: SubTaskFilter! = {}
+    filter: TodoItemDTOFilter! = {}
 
     """Specify to sort results."""
-    sorting: [SubTaskSort!]! = []
-  ): TodoAppointmentSubTasksConnection!
+    sorting: [TodoItemDTOSort!]! = []
+  ): TagTodoItemsConnection!
 }
 
-input CursorPaging {
-  """Paginate before opaque cursor"""
-  before: ConnectionCursor
-
-  """Paginate after opaque cursor"""
-  after: ConnectionCursor
-
-  """Paginate first"""
-  first: Int
-
-  """Paginate last"""
-  last: Int
-}
-
-input SubTaskFilter {
-  and: [SubTaskFilter!]
-  or: [SubTaskFilter!]
+input TodoItemDTOAggregateFilter {
+  and: [TodoItemDTOAggregateFilter!]
+  or: [TodoItemDTOAggregateFilter!]
   id: IDFilterComparison
   title: StringFieldComparison
-  description: StringFieldComparison
   completed: BooleanFieldComparison
-  createdAt: DateFieldComparison
-  updatedAt: DateFieldComparison
-  createdBy: StringFieldComparison
-  updatedBy: StringFieldComparison
+  documentType: StringFieldComparison
 }
 
 input IDFilterComparison {
@@ -225,6 +211,257 @@ input BooleanFieldComparison {
   isNot: Boolean
 }
 
+input CursorPaging {
+  """Paginate before opaque cursor"""
+  before: ConnectionCursor
+
+  """Paginate after opaque cursor"""
+  after: ConnectionCursor
+
+  """Paginate first"""
+  first: Int
+
+  """Paginate last"""
+  last: Int
+}
+
+input TodoItemDTOFilter {
+  and: [TodoItemDTOFilter!]
+  or: [TodoItemDTOFilter!]
+  id: IDFilterComparison
+  title: StringFieldComparison
+  completed: BooleanFieldComparison
+  documentType: StringFieldComparison
+}
+
+input TodoItemDTOSort {
+  field: TodoItemDTOSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum TodoItemDTOSortFields {
+  id
+  title
+  completed
+  documentType
+}
+
+"""Sort Directions"""
+enum SortDirection {
+  ASC
+  DESC
+}
+
+"""Sort Nulls Options"""
+enum SortNulls {
+  NULLS_FIRST
+  NULLS_LAST
+}
+
+type TagDeleteResponse {
+  id: ID
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TagEdge {
+  """The node containing the Tag"""
+  node: Tag!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type TagConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [TagEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
+type TagAggregateGroupBy {
+  id: ID
+  name: String
+  createdAt(by: GroupBy! = DAY): DateTime
+  updatedAt(by: GroupBy! = DAY): DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TagCountAggregate {
+  id: Int
+  name: Int
+  createdAt: Int
+  updatedAt: Int
+  createdBy: Int
+  updatedBy: Int
+}
+
+type TagMinAggregate {
+  id: ID
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TagMaxAggregate {
+  id: ID
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TagAggregateResponse {
+  groupBy: TagAggregateGroupBy
+  count: TagCountAggregate
+  min: TagMinAggregate
+  max: TagMaxAggregate
+}
+
+type TodoItemDTOEdge {
+  """The node containing the TodoItemDTO"""
+  node: TodoItemDTO!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type TagTodoItemsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [TodoItemDTOEdge!]!
+}
+
+type TagTodoItemsAggregateGroupBy {
+  id: ID
+  title: String
+  completed: Boolean
+  documentType: String
+}
+
+type TagTodoItemsCountAggregate {
+  id: Int
+  title: Int
+  completed: Int
+  documentType: Int
+}
+
+type TagTodoItemsMinAggregate {
+  id: ID
+  title: String
+  documentType: String
+}
+
+type TagTodoItemsMaxAggregate {
+  id: ID
+  title: String
+  documentType: String
+}
+
+type TagTodoItemsAggregateResponse {
+  groupBy: TagTodoItemsAggregateGroupBy
+  count: TagTodoItemsCountAggregate
+  min: TagTodoItemsMinAggregate
+  max: TagTodoItemsMaxAggregate
+}
+
+type Location {
+  id: ID!
+  address: String!
+  city: String!
+  state: String!
+  zipCode: String!
+}
+
+type LocationDeleteResponse {
+  id: ID
+  address: String
+  city: String
+  state: String
+  zipCode: String
+}
+
+type LocationEdge {
+  """The node containing the Location"""
+  node: Location!
+
+  """Cursor for this node."""
+  cursor: ConnectionCursor!
+}
+
+type LocationConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [LocationEdge!]!
+}
+
+type TodoAppointment implements TodoItemDTO {
+  id: ID!
+  title: String!
+  completed: Boolean!
+  documentType: String!
+  dateTime: DateTime!
+  participants: [String!]!
+  subTasksAggregate(
+    """Filter to find records to aggregate on"""
+    filter: SubTaskAggregateFilter
+  ): [TodoAppointmentSubTasksAggregateResponse!]!
+  tagsAggregate(
+    """Filter to find records to aggregate on"""
+    filter: TagAggregateFilter
+  ): [TodoAppointmentTagsAggregateResponse!]!
+  location: Location
+  subTasks(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: SubTaskFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [SubTaskSort!]! = []
+  ): TodoAppointmentSubTasksConnection!
+  tags(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: TagFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [TagSort!]! = []
+  ): TodoAppointmentTagsConnection!
+}
+
+input SubTaskAggregateFilter {
+  and: [SubTaskAggregateFilter!]
+  or: [SubTaskAggregateFilter!]
+  id: IDFilterComparison
+  title: StringFieldComparison
+  description: StringFieldComparison
+  completed: BooleanFieldComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  createdBy: StringFieldComparison
+  updatedBy: StringFieldComparison
+}
+
 input DateFieldComparison {
   is: Boolean
   isNot: Boolean
@@ -245,6 +482,30 @@ input DateFieldComparisonBetween {
   upper: DateTime!
 }
 
+input TagAggregateFilter {
+  and: [TagAggregateFilter!]
+  or: [TagAggregateFilter!]
+  id: IDFilterComparison
+  name: StringFieldComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  createdBy: StringFieldComparison
+  updatedBy: StringFieldComparison
+}
+
+input SubTaskFilter {
+  and: [SubTaskFilter!]
+  or: [SubTaskFilter!]
+  id: IDFilterComparison
+  title: StringFieldComparison
+  description: StringFieldComparison
+  completed: BooleanFieldComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  createdBy: StringFieldComparison
+  updatedBy: StringFieldComparison
+}
+
 input SubTaskSort {
   field: SubTaskSortFields!
   direction: SortDirection!
@@ -262,16 +523,30 @@ enum SubTaskSortFields {
   updatedBy
 }
 
-"""Sort Directions"""
-enum SortDirection {
-  ASC
-  DESC
+input TagFilter {
+  and: [TagFilter!]
+  or: [TagFilter!]
+  id: IDFilterComparison
+  name: StringFieldComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  createdBy: StringFieldComparison
+  updatedBy: StringFieldComparison
 }
 
-"""Sort Nulls Options"""
-enum SortNulls {
-  NULLS_FIRST
-  NULLS_LAST
+input TagSort {
+  field: TagSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum TagSortFields {
+  id
+  name
+  createdAt
+  updatedAt
+  createdBy
+  updatedBy
 }
 
 type TodoTask implements TodoItemDTO {
@@ -280,6 +555,7 @@ type TodoTask implements TodoItemDTO {
   completed: Boolean!
   documentType: String!
   priority: Float!
+  location: Location
   subTasks(
     """Limit or page results."""
     paging: CursorPaging! = {first: 10}
@@ -290,6 +566,16 @@ type TodoTask implements TodoItemDTO {
     """Specify to sort results."""
     sorting: [SubTaskSort!]! = []
   ): TodoTaskSubTasksConnection!
+  tags(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: TagFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [TagSort!]! = []
+  ): TodoTaskTagsConnection!
 }
 
 type TodoTaskDeleteResponse {
@@ -316,6 +602,17 @@ type TodoTaskConnection {
   edges: [TodoTaskEdge!]!
 }
 
+type TodoTaskTagsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [TagEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
 type TodoTaskSubTasksConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -332,14 +629,6 @@ type TodoItemDTODeleteResponse {
   title: String
   completed: Boolean
   documentType: String
-}
-
-type TodoItemDTOEdge {
-  """The node containing the TodoItemDTO"""
-  node: TodoItemDTO!
-
-  """Cursor for this node."""
-  cursor: ConnectionCursor!
 }
 
 type TodoItemDTOConnection {
@@ -375,6 +664,58 @@ type TodoAppointmentConnection {
   edges: [TodoAppointmentEdge!]!
 }
 
+type TodoAppointmentAggregateGroupBy {
+  id: ID
+  title: String
+  completed: Boolean
+  documentType: String
+  dateTime(by: GroupBy! = DAY): DateTime
+  participants: [String!]
+}
+
+type TodoAppointmentCountAggregate {
+  id: Int
+  title: Int
+  completed: Int
+  documentType: Int
+  dateTime: Int
+  participants: Int
+}
+
+type TodoAppointmentMinAggregate {
+  id: ID
+  title: String
+  documentType: String
+  dateTime: DateTime
+  participants: [String!]
+}
+
+type TodoAppointmentMaxAggregate {
+  id: ID
+  title: String
+  documentType: String
+  dateTime: DateTime
+  participants: [String!]
+}
+
+type TodoAppointmentAggregateResponse {
+  groupBy: TodoAppointmentAggregateGroupBy
+  count: TodoAppointmentCountAggregate
+  min: TodoAppointmentMinAggregate
+  max: TodoAppointmentMaxAggregate
+}
+
+type TodoAppointmentTagsConnection {
+  """Paging information"""
+  pageInfo: PageInfo!
+
+  """Array of edges."""
+  edges: [TagEdge!]!
+
+  """Fetch total count of records"""
+  totalCount: Int!
+}
+
 type TodoAppointmentSubTasksConnection {
   """Paging information"""
   pageInfo: PageInfo!
@@ -384,6 +725,98 @@ type TodoAppointmentSubTasksConnection {
 
   """Fetch total count of records"""
   totalCount: Int!
+}
+
+type TodoAppointmentTagsAggregateGroupBy {
+  id: ID
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TodoAppointmentTagsCountAggregate {
+  id: Int
+  name: Int
+  createdAt: Int
+  updatedAt: Int
+  createdBy: Int
+  updatedBy: Int
+}
+
+type TodoAppointmentTagsMinAggregate {
+  id: ID
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TodoAppointmentTagsMaxAggregate {
+  id: ID
+  name: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TodoAppointmentTagsAggregateResponse {
+  groupBy: TodoAppointmentTagsAggregateGroupBy
+  count: TodoAppointmentTagsCountAggregate
+  min: TodoAppointmentTagsMinAggregate
+  max: TodoAppointmentTagsMaxAggregate
+}
+
+type TodoAppointmentSubTasksAggregateGroupBy {
+  id: ID
+  title: String
+  description: String
+  completed: Boolean
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TodoAppointmentSubTasksCountAggregate {
+  id: Int
+  title: Int
+  description: Int
+  completed: Int
+  createdAt: Int
+  updatedAt: Int
+  createdBy: Int
+  updatedBy: Int
+}
+
+type TodoAppointmentSubTasksMinAggregate {
+  id: ID
+  title: String
+  description: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TodoAppointmentSubTasksMaxAggregate {
+  id: ID
+  title: String
+  description: String
+  createdAt: DateTime
+  updatedAt: DateTime
+  createdBy: String
+  updatedBy: String
+}
+
+type TodoAppointmentSubTasksAggregateResponse {
+  groupBy: TodoAppointmentSubTasksAggregateGroupBy
+  count: TodoAppointmentSubTasksCountAggregate
+  min: TodoAppointmentSubTasksMinAggregate
+  max: TodoAppointmentSubTasksMaxAggregate
 }
 
 type Query {
@@ -401,6 +834,10 @@ type Query {
     """Specify to sort results."""
     sorting: [TodoItemDTOSort!]! = []
   ): TodoItemDTOConnection!
+  todoAppointmentAggregate(
+    """Filter to find records to aggregate on"""
+    filter: TodoAppointmentAggregateFilter
+  ): [TodoAppointmentAggregateResponse!]!
   todoAppointment(
     """The id of the record to find."""
     id: ID!
@@ -447,28 +884,49 @@ type Query {
     """Specify to sort results."""
     sorting: [SubTaskSort!]! = []
   ): SubTaskConnection!
+  tagAggregate(
+    """Filter to find records to aggregate on"""
+    filter: TagAggregateFilter
+  ): [TagAggregateResponse!]!
+  tag(
+    """The id of the record to find."""
+    id: ID!
+  ): Tag!
+  tags(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: TagFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [TagSort!]! = []
+  ): TagConnection!
+  location(
+    """The id of the record to find."""
+    id: ID!
+  ): Location!
+  locations(
+    """Limit or page results."""
+    paging: CursorPaging! = {first: 10}
+
+    """Specify to filter the records returned."""
+    filter: LocationFilter! = {}
+
+    """Specify to sort results."""
+    sorting: [LocationSort!]! = []
+  ): LocationConnection!
 }
 
-input TodoItemDTOFilter {
-  and: [TodoItemDTOFilter!]
-  or: [TodoItemDTOFilter!]
+input TodoAppointmentAggregateFilter {
+  and: [TodoAppointmentAggregateFilter!]
+  or: [TodoAppointmentAggregateFilter!]
   id: IDFilterComparison
   title: StringFieldComparison
   completed: BooleanFieldComparison
   documentType: StringFieldComparison
-}
-
-input TodoItemDTOSort {
-  field: TodoItemDTOSortFields!
-  direction: SortDirection!
-  nulls: SortNulls
-}
-
-enum TodoItemDTOSortFields {
-  id
-  title
-  completed
-  documentType
+  dateTime: DateFieldComparison
+  participants: StringFieldComparison
 }
 
 input TodoAppointmentFilter {
@@ -541,17 +999,28 @@ enum TodoTaskSortFields {
   priority
 }
 
-input SubTaskAggregateFilter {
-  and: [SubTaskAggregateFilter!]
-  or: [SubTaskAggregateFilter!]
+input LocationFilter {
+  and: [LocationFilter!]
+  or: [LocationFilter!]
   id: IDFilterComparison
-  title: StringFieldComparison
-  description: StringFieldComparison
-  completed: BooleanFieldComparison
-  createdAt: DateFieldComparison
-  updatedAt: DateFieldComparison
-  createdBy: StringFieldComparison
-  updatedBy: StringFieldComparison
+  address: StringFieldComparison
+  city: StringFieldComparison
+  state: StringFieldComparison
+  zipCode: StringFieldComparison
+}
+
+input LocationSort {
+  field: LocationSortFields!
+  direction: SortDirection!
+  nulls: SortNulls
+}
+
+enum LocationSortFields {
+  id
+  address
+  city
+  state
+  zipCode
 }
 
 type Mutation {
@@ -561,12 +1030,16 @@ type Mutation {
   updateManyTodoItemDTOS(input: UpdateManyTodoItemDTOSInput!): UpdateManyResponse!
   deleteOneTodoItemDTO(input: DeleteOneTodoItemDTOInput!): TodoItemDTODeleteResponse!
   deleteManyTodoItemDTOS(input: DeleteManyTodoItemDTOSInput!): DeleteManyResponse!
+  addTagsToTodoAppointment(input: AddTagsToTodoAppointmentInput!): TodoAppointment!
+  setTagsOnTodoAppointment(input: SetTagsOnTodoAppointmentInput!): TodoAppointment!
   createOneTodoAppointment(input: CreateOneTodoAppointmentInput!): TodoAppointment!
   createManyTodoAppointments(input: CreateManyTodoAppointmentsInput!): [TodoAppointment!]!
   updateOneTodoAppointment(input: UpdateOneTodoAppointmentInput!): TodoAppointment!
   updateManyTodoAppointments(input: UpdateManyTodoAppointmentsInput!): UpdateManyResponse!
   deleteOneTodoAppointment(input: DeleteOneTodoAppointmentInput!): TodoAppointmentDeleteResponse!
   deleteManyTodoAppointments(input: DeleteManyTodoAppointmentsInput!): DeleteManyResponse!
+  addTagsToTodoTask(input: AddTagsToTodoTaskInput!): TodoTask!
+  setTagsOnTodoTask(input: SetTagsOnTodoTaskInput!): TodoTask!
   createOneTodoTask(input: CreateOneTodoTaskInput!): TodoTask!
   createManyTodoTasks(input: CreateManyTodoTasksInput!): [TodoTask!]!
   updateOneTodoTask(input: UpdateOneTodoTaskInput!): TodoTask!
@@ -581,6 +1054,18 @@ type Mutation {
   updateManySubTasks(input: UpdateManySubTasksInput!): UpdateManyResponse!
   deleteOneSubTask(input: DeleteOneSubTaskInput!): SubTaskDeleteResponse!
   deleteManySubTasks(input: DeleteManySubTasksInput!): DeleteManyResponse!
+  createOneTag(input: CreateOneTagInput!): Tag!
+  createManyTags(input: CreateManyTagsInput!): [Tag!]!
+  updateOneTag(input: UpdateOneTagInput!): Tag!
+  updateManyTags(input: UpdateManyTagsInput!): UpdateManyResponse!
+  deleteOneTag(input: DeleteOneTagInput!): TagDeleteResponse!
+  deleteManyTags(input: DeleteManyTagsInput!): DeleteManyResponse!
+  createOneLocation(input: CreateOneLocationInput!): Location!
+  createManyLocations(input: CreateManyLocationsInput!): [Location!]!
+  updateOneLocation(input: UpdateOneLocationInput!): Location!
+  updateManyLocations(input: UpdateManyLocationsInput!): UpdateManyResponse!
+  deleteOneLocation(input: DeleteOneLocationInput!): LocationDeleteResponse!
+  deleteManyLocations(input: DeleteManyLocationsInput!): DeleteManyResponse!
 }
 
 input CreateOneTodoItemDTOInput {
@@ -651,6 +1136,22 @@ input TodoItemDTODeleteFilter {
   documentType: StringFieldComparison
 }
 
+input AddTagsToTodoAppointmentInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetTagsOnTodoAppointmentInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input CreateOneTodoAppointmentInput {
   """The record to create"""
   todoAppointment: CreateTodoAppointmentInput!
@@ -659,6 +1160,7 @@ input CreateOneTodoAppointmentInput {
 input CreateTodoAppointmentInput {
   title: String!
   completed: Boolean!
+  location: ID
   dateTime: DateTime!
   participants: [String!]!
 }
@@ -725,6 +1227,22 @@ input TodoAppointmentDeleteFilter {
   participants: StringFieldComparison
 }
 
+input AddTagsToTodoTaskInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
+input SetTagsOnTodoTaskInput {
+  """The id of the record."""
+  id: ID!
+
+  """The ids of the relations."""
+  relationIds: [ID!]!
+}
+
 input CreateOneTodoTaskInput {
   """The record to create"""
   todoTask: CreateTodoTaskInput!
@@ -733,6 +1251,7 @@ input CreateOneTodoTaskInput {
 input CreateTodoTaskInput {
   title: String!
   completed: Boolean!
+  location: ID
   priority: Int!
 }
 
@@ -877,4 +1396,137 @@ input SubTaskDeleteFilter {
   updatedAt: DateFieldComparison
   createdBy: StringFieldComparison
   updatedBy: StringFieldComparison
+}
+
+input CreateOneTagInput {
+  """The record to create"""
+  tag: TagInput!
+}
+
+input TagInput {
+  name: String!
+}
+
+input CreateManyTagsInput {
+  """Array of records to create"""
+  tags: [TagInput!]!
+}
+
+input UpdateOneTagInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: TagInput!
+}
+
+input UpdateManyTagsInput {
+  """Filter used to find fields to update"""
+  filter: TagUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: TagInput!
+}
+
+input TagUpdateFilter {
+  and: [TagUpdateFilter!]
+  or: [TagUpdateFilter!]
+  id: IDFilterComparison
+  name: StringFieldComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  createdBy: StringFieldComparison
+  updatedBy: StringFieldComparison
+}
+
+input DeleteOneTagInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyTagsInput {
+  """Filter to find records to delete"""
+  filter: TagDeleteFilter!
+}
+
+input TagDeleteFilter {
+  and: [TagDeleteFilter!]
+  or: [TagDeleteFilter!]
+  id: IDFilterComparison
+  name: StringFieldComparison
+  createdAt: DateFieldComparison
+  updatedAt: DateFieldComparison
+  createdBy: StringFieldComparison
+  updatedBy: StringFieldComparison
+}
+
+input CreateOneLocationInput {
+  """The record to create"""
+  location: LocationInputDTO!
+}
+
+input LocationInputDTO {
+  address: String!
+  city: String!
+  state: String!
+  zipCode: String!
+}
+
+input CreateManyLocationsInput {
+  """Array of records to create"""
+  locations: [LocationInputDTO!]!
+}
+
+input UpdateOneLocationInput {
+  """The id of the record to update"""
+  id: ID!
+
+  """The update to apply."""
+  update: UpdateLocation!
+}
+
+input UpdateLocation {
+  id: ID
+  address: String
+  city: String
+  state: String
+  zipCode: String
+}
+
+input UpdateManyLocationsInput {
+  """Filter used to find fields to update"""
+  filter: LocationUpdateFilter!
+
+  """The update to apply to all records found using the filter"""
+  update: UpdateLocation!
+}
+
+input LocationUpdateFilter {
+  and: [LocationUpdateFilter!]
+  or: [LocationUpdateFilter!]
+  id: IDFilterComparison
+  address: StringFieldComparison
+  city: StringFieldComparison
+  state: StringFieldComparison
+  zipCode: StringFieldComparison
+}
+
+input DeleteOneLocationInput {
+  """The id of the record to delete."""
+  id: ID!
+}
+
+input DeleteManyLocationsInput {
+  """Filter to find records to delete"""
+  filter: LocationDeleteFilter!
+}
+
+input LocationDeleteFilter {
+  and: [LocationDeleteFilter!]
+  or: [LocationDeleteFilter!]
+  id: IDFilterComparison
+  address: StringFieldComparison
+  city: StringFieldComparison
+  state: StringFieldComparison
+  zipCode: StringFieldComparison
 }

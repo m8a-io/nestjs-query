@@ -5,6 +5,13 @@ export const TODO_TASK_FRAGMENT = `
     completed
     documentType
     priority
+    location {
+      id
+      address
+      city
+      state
+      zipCode
+    }
   }
 `
 
@@ -16,5 +23,12 @@ export const TODO_APPOINTMENT_FRAGMENT = `
     documentType
     dateTime
     participants
+    location {
+      id
+      address
+      city
+      state
+      zipCode
+    }
   }
 `

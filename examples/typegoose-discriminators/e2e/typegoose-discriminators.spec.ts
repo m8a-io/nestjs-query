@@ -4,7 +4,9 @@ import { TestingModule } from '@nestjs/testing'
 import { Model } from 'mongoose'
 import request from 'supertest'
 
+import { LocationDTO } from '../src/location/dto/location.dto'
 import { SubTaskDTO } from '../src/sub-task/dto/sub-task.dto'
+import { TagDTO } from '../src/tag/dto/tag.dto'
 import { TodoAppointmentDTO } from '../src/todo-item/dto/todo-appointment.dto'
 import { TodoItemDTO } from '../src/todo-item/dto/todo-item.dto'
 import { TodoTaskDTO } from '../src/todo-item/dto/todo-task.dto'
@@ -16,7 +18,38 @@ describe('Typegoose Discriminators with Concrete DTOs', () => {
   let todoItemModel: Model<TodoItemEntity>
   let moduleRef: TestingModule
 
-  async function createTestTask(title: string): Promise<TodoTaskDTO> {
+  async function createTestLocation(): Promise<LocationDTO> {
+    const response = await request(app.getHttpServer())
+      .post('/graphql')
+      .send({
+        query: `
+          mutation CreateLocation($input: CreateOneLocationInput!) {
+            createOneLocation(input: $input) {
+              id
+              address
+              city
+              state
+              zipCode
+            }
+          }
+        `,
+        variables: {
+          input: {
+            location: {
+              address: '123 Main St',
+              city: 'Anytown',
+              state: 'CA',
+              zipCode: '12345'
+            }
+          }
+        }
+      })
+
+    expect(response.body.errors).toBeUndefined()
+    return response.body.data.createOneLocation as LocationDTO
+  }
+
+  async function createTestTask(title: string, locationId?: string): Promise<TodoTaskDTO> {
     const response = await request(app.getHttpServer())
       .post('/graphql')
       .send({
@@ -33,7 +66,8 @@ describe('Typegoose Discriminators with Concrete DTOs', () => {
             todoTask: {
               title,
               completed: false,
-              priority: 1
+              priority: 1,
+              location: locationId
             }
           }
         }
@@ -43,7 +77,7 @@ describe('Typegoose Discriminators with Concrete DTOs', () => {
     return response.body.data.createOneTodoTask as TodoTaskDTO
   }
 
-  async function createTestAppointment(title: string): Promise<TodoAppointmentDTO> {
+  async function createTestAppointment(title: string, locationId?: string): Promise<TodoAppointmentDTO> {
     const response = await request(app.getHttpServer())
       .post('/graphql')
       .send({
@@ -61,7 +95,8 @@ describe('Typegoose Discriminators with Concrete DTOs', () => {
               title,
               completed: false,
               dateTime: new Date(),
-              participants: ['Me', 'You']
+              participants: ['Me', 'You'],
+              location: locationId
             }
           }
         }
@@ -411,58 +446,16 @@ describe('Typegoose Discriminators with Concrete DTOs', () => {
     let appointment: TodoAppointmentDTO
     let taskSubTask: SubTaskDTO
     let appointmentSubTask: SubTaskDTO
+    let location: LocationDTO
     const taskTitle = `Task ${Date.now()}`
     const appointmentTitle = `Appointment ${Date.now()}`
     const subTaskTitle = `Sub Task ${Date.now()}`
 
     beforeEach(async () => {
+      location = await createTestLocation()
       // Create a task and an appointment before each test in this block
-      const createTaskResponse = await request(app.getHttpServer())
-        .post('/graphql')
-        .send({
-          query: `
-            mutation CreateTodoTask($input: CreateOneTodoTaskInput!) {
-              createOneTodoTask(input: $input) {
-                ...TodoTaskFragment
-              }
-            }
-            ${TODO_TASK_FRAGMENT}
-          `,
-          variables: {
-            input: {
-              todoTask: {
-                title: taskTitle,
-                completed: false,
-                priority: 1
-              }
-            }
-          }
-        })
-      task = createTaskResponse.body.data.createOneTodoTask as TodoTaskDTO
-
-      const createAppointmentResponse = await request(app.getHttpServer())
-        .post('/graphql')
-        .send({
-          query: `
-            mutation CreateTodoAppointment($input: CreateOneTodoAppointmentInput!) {
-              createOneTodoAppointment(input: $input) {
-                ...TodoAppointmentFragment
-              }
-            }
-            ${TODO_APPOINTMENT_FRAGMENT}
-          `,
-          variables: {
-            input: {
-              todoAppointment: {
-                title: appointmentTitle,
-                completed: false,
-                dateTime: new Date(),
-                participants: ['Me', 'You']
-              }
-            }
-          }
-        })
-      appointment = createAppointmentResponse.body.data.createOneTodoAppointment as TodoAppointmentDTO
+      task = await createTestTask(taskTitle, location.id)
+      appointment = await createTestAppointment(appointmentTitle, location.id)
 
       const createTaskSubTaskResponse = await request(app.getHttpServer())
         .post('/graphql')
@@ -572,6 +565,106 @@ describe('Typegoose Discriminators with Concrete DTOs', () => {
       expect(todoAppointment.subTasks.edges).toHaveLength(1)
       expect(todoAppointment.subTasks.edges[0].node.id).toBe(appointmentSubTask.id)
       expect(todoAppointment.subTasks.edges[0].node.title).toBe(subTaskTitle)
+    })
+
+    it('should query for task and its location', async () => {
+      const response = await request(app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: `
+            query {
+              todoTask(id: "${task.id}") {
+                id
+                title
+                location {
+                  id
+                  address
+                }
+              }
+            }
+          `
+        })
+
+      expect(response.body.errors).toBeUndefined()
+      const todoTask = response.body.data.todoTask
+      expect(todoTask.id).toBe(task.id)
+      expect(todoTask.location.id).toBe(location.id)
+      expect(todoTask.location.address).toBe('123 Main St')
+    })
+
+    it('should add a tag to a task and query it back', async () => {
+      // 1. Create a tag
+      const tagName = `Tag ${Date.now()}`
+      const createTagResponse = await request(app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: `
+            mutation CreateTag($input: CreateOneTagInput!) {
+              createOneTag(input: $input) {
+                id
+                name
+              }
+            }
+          `,
+          variables: {
+            input: {
+              tag: {
+                name: tagName
+              }
+            }
+          }
+        })
+      expect(createTagResponse.body.errors).toBeUndefined()
+      const tag = createTagResponse.body.data.createOneTag as TagDTO
+
+      // 2. Add the tag to the task
+      const addTagResponse = await request(app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: `
+            mutation AddTagsToTodoTask($input: AddTagsToTodoTaskInput!) {
+              addTagsToTodoTask(input: $input) {
+                id
+              }
+            }
+          `,
+          variables: {
+            input: {
+              id: task.id,
+              relationIds: [tag.id]
+            }
+          }
+        })
+      expect(addTagResponse.body.errors).toBeUndefined()
+
+      // 3. Query the task and its tags
+      const queryResponse = await request(app.getHttpServer())
+        .post('/graphql')
+        .send({
+          query: `
+            query {
+              todoTask(id: "${task.id}") {
+                id
+                title
+                tags {
+                  edges {
+                    node {
+                      id
+                      name
+                    }
+                  }
+                }
+              }
+            }
+          `
+        })
+
+      expect(queryResponse.body.errors).toBeUndefined()
+      const queriedTask = queryResponse.body.data.todoTask
+      expect(queriedTask.id).toBe(task.id)
+      expect(queriedTask.tags.edges).toHaveLength(1)
+      expect(queriedTask.tags.edges[0].node.id).toBe(tag.id)
+      expect(queriedTask.tags.edges[0].node.name).toBe(tagName)
     })
   })
 })

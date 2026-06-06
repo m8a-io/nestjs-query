@@ -1,7 +1,9 @@
 import { modelOptions, prop, Ref } from '@typegoose/typegoose'
 import { Types } from 'mongoose'
 
+import { LocationEntity } from '../../location/entities/location.entity'
 import { SubTaskEntity } from '../../sub-task/sub-task.entity'
+import { TagEntity } from '../../tag/tag.entity'
 
 @modelOptions({
   schemaOptions: {
@@ -33,4 +35,10 @@ export class TodoItemEntity {
     justOne: false
   })
   subTasks!: Ref<SubTaskEntity>[]
+
+  @prop({ ref: () => TagEntity })
+  tags!: Ref<TagEntity>[]
+
+  @prop({ ref: () => LocationEntity, required: false })
+  location?: Ref<LocationEntity>
 }

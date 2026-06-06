@@ -1,4 +1,4 @@
-import { Field, GraphQLISODateTime, InputType } from '@nestjs/graphql'
+import { Field, GraphQLISODateTime, ID, InputType } from '@nestjs/graphql'
 
 import { CreateTodoItemInput } from './create-todo-item.input'
 
