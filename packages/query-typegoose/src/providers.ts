@@ -21,7 +21,6 @@ function createTypegooseQueryServiceProvider<Entity extends Base>(
     provide: getQueryServiceToken(inputModel.typegooseClass),
     useFactory(ModelClass: ReturnModelType<new () => Entity>) {
       // initialize default serializer for documents, this is the type that mongoose returns from queries
-      // @ts-expect-error linting issue, tests still pass
       AssemblerSerializer((obj: DocumentType<unknown>) => obj.toObject({ virtuals: true }))(ModelClass)
 
       return new TypegooseQueryService(ModelClass)
