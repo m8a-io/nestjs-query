@@ -1,5 +1,5 @@
 import { GraphQLISODateTime, ID, ObjectType } from '@nestjs/graphql'
-import { FilterableField } from '@ptc-org/nestjs-query-graphql'
+import { FilterableField } from '@m8a/nestjs-query-graphql'
 
 @ObjectType('TodoItem')
 export class TodoItemDTO {

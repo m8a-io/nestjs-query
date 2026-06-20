@@ -1,5 +1,5 @@
 import { Args, ID, Mutation, Query, Resolver } from '@nestjs/graphql'
-import { CRUDResolver } from '@ptc-org/nestjs-query-graphql'
+import { CRUDResolver } from '@m8a/nestjs-query-graphql'
 
 import { CreateTodoAppointmentInput } from './dto/create-todo-appointment.input'
 import { TodoAppointmentDTO } from './dto/todo-appointment.dto'

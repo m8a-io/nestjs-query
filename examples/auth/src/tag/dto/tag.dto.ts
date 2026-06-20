@@ -12,7 +12,7 @@ import {
   QueryOptions,
   UpdateManyInputType,
   UpdateOneInputType
-} from '@ptc-org/nestjs-query-graphql'
+} from '@m8a/nestjs-query-graphql'
 
 import { UserContext } from '../../auth/auth.interfaces'
 import { TodoItemDTO } from '../../todo-item/dto/todo-item.dto'

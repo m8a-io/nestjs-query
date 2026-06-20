@@ -39,6 +39,17 @@ git remote -v
     - Run `nx run-many --target=build --all`
     - Run tests
 
+    > **RDE note — Mongo-backed tests need `MONGOMS_DISTRO` on Wolfi.** The `query-mongoose` and
+    > `query-typegoose` suites use `mongodb-memory-server`, which downloads/starts a real `mongod`.
+    > The m8a RDE runs on **Wolfi** (glibc), whose `/etc/os-release` has `ID=wolfi` and no `ID_LIKE`,
+    > so `mongodb-memory-server` can't detect a download URL and throws `UnknownLinuxDistro` — under
+    > parallel Jest this looks like a multi-minute **hang** on the first Mongo-backed spec. Wolfi is
+    > glibc, so a standard Ubuntu build runs fine; just tell mms which one to fetch:
+    > ```bash
+    > MONGOMS_DISTRO=ubuntu-2204 nx run-many --target=test --all
+    > ```
+    > (Or export `MONGOMS_DISTRO=ubuntu-2204` once in the RDE so every Mongo-backed suite works.)
+
 5.  **Commit**
     ```bash
     git commit -am "Merge upstream and re-apply @m8a renaming"

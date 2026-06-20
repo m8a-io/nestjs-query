@@ -1,5 +1,5 @@
 import { Args, Mutation, Resolver } from '@nestjs/graphql'
-import { CRUDResolver } from '@ptc-org/nestjs-query-graphql'
+import { CRUDResolver } from '@m8a/nestjs-query-graphql'
 
 import { CreateTodoTaskInput } from './dto/create-todo-task.input'
 import { TodoTaskDTO } from './dto/todo-task.dto'

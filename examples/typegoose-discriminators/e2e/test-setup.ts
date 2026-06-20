@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing'
-import { DiscriminateDTOsOpts, NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql'
-import { NestjsQueryTypegooseModule } from '@ptc-org/nestjs-query-typegoose'
+import { DiscriminateDTOsOpts, NestjsQueryGraphQLModule } from '@m8a/nestjs-query-graphql'
+import { NestjsQueryTypegooseModule } from '@m8a/nestjs-query-typegoose'
 
 import { AppModule } from '../src/app.module'
 import { CreateTodoAppointmentInput } from '../src/todo-item/dto/create-todo-appointment.input'

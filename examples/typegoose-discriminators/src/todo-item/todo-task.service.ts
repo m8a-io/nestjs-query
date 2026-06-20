@@ -1,4 +1,4 @@
-import { AssemblerQueryService, InjectQueryService, QueryService } from '@ptc-org/nestjs-query-core'
+import { AssemblerQueryService, InjectQueryService, QueryService } from '@m8a/nestjs-query-core'
 
 import { TodoTaskDTO } from './dto/todo-task.dto'
 import { TodoTaskEntity } from './entities/todo-task.entity'

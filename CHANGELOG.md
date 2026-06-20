@@ -1,4 +1,45 @@
  
+# [9.4.0](https://github.com/TriPSs/nestjs-query/compare/v9.3.0...v9.4.0) (2026-01-20)
+
+
+### Bug Fixes
+
+* **ci:** include node version in cache key for native modules ([ea1199a](https://github.com/TriPSs/nestjs-query/commit/ea1199a9a378b2b55129b314a62ec3813d4c4703))
+* **mikro-orm:** address CodeRabbit review comments ([44f8c30](https://github.com/TriPSs/nestjs-query/commit/44f8c30d20b8973e0bafc30ff8b33ec126d6144e))
+* **query-mikro-orm:** add eslint config and fix lint errors ([a88d9f3](https://github.com/TriPSs/nestjs-query/commit/a88d9f30c603517371b50d54f75700d98fa0fde6))
+* **reference-loader:** make key dynamic in createLoader and loader calls ([eede3f6](https://github.com/TriPSs/nestjs-query/commit/eede3f605c6cbd3f2dd0774da89c808752be91b2))
+
+
+### Features
+
+* **ci:** add pkg.pr.new preview releases ([21d77ce](https://github.com/TriPSs/nestjs-query/commit/21d77ce87ae4c9876d8b10b34110818e4732ab33))
+* **query-mikro-orm:** add MikroORM adapter package ([0b71d5a](https://github.com/TriPSs/nestjs-query/commit/0b71d5adce640d020e3dcef0543ee5d95eda04ec)), closes [#178](https://github.com/TriPSs/nestjs-query/issues/178)
+
+
+
+# [9.3.0](https://github.com/TriPSs/nestjs-query/compare/v9.2.1...v9.3.0) (2025-12-05)
+
+
+### Bug Fixes
+
+* lint errors and exclude federation-v2-e2e from Jest e2e tests ([c11dc44](https://github.com/TriPSs/nestjs-query/commit/c11dc4477ecd6b673773d546fbd0523266dc4d3e))
+* **query-graphql:** add @Parent() decorator to resolveReference for Federation [#410](https://github.com/TriPSs/nestjs-query/issues/410) ([bdb4f7d](https://github.com/TriPSs/nestjs-query/commit/bdb4f7d98acdff57139d4b46df4a4092d893850d))
+* **tests:** remove trailing comma in Jest config ([0d929f0](https://github.com/TriPSs/nestjs-query/commit/0d929f045b5db2f49efd838df07d9690279267f9))
+
+
+### Features
+
+* **examples:** add federation-v2-e2e to reproduce issue [#410](https://github.com/TriPSs/nestjs-query/issues/410) ([8aa75d1](https://github.com/TriPSs/nestjs-query/commit/8aa75d14641c1e3a4d5bfdfbbe1d29bd980151f7))
+* **examples:** add seeder services for todo and user ([0c0314a](https://github.com/TriPSs/nestjs-query/commit/0c0314a67f0b582beedafa3a74dff926c8b035e1))
+* **examples:** add tag-service with UUID ID to federation-v2-e2e ([e010419](https://github.com/TriPSs/nestjs-query/commit/e010419d5d4972d5f9f996bde2aef6af3f2fc6f7)), closes [#410](https://github.com/TriPSs/nestjs-query/issues/410)
+
+
+### Reverts
+
+* restore deleteAll() for TypeORM 0.3.24+ compatibility ([edf9fc4](https://github.com/TriPSs/nestjs-query/commit/edf9fc482b44fd8a61160ff9d787491646a13c12))
+
+
+
 ## [9.2.1](https://github.com/TriPSs/nestjs-query/compare/v9.2.0...v9.2.1) (2025-10-06)
 
 

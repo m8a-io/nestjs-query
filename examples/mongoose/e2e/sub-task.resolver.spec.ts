@@ -1,8 +1,8 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common'
 import { getConnectionToken } from '@nestjs/mongoose'
 import { Test } from '@nestjs/testing'
-import { AggregateResponse } from '@ptc-org/nestjs-query-core'
-import { CursorConnectionType } from '@ptc-org/nestjs-query-graphql'
+import { AggregateResponse } from '@m8a/nestjs-query-core'
+import { CursorConnectionType } from '@m8a/nestjs-query-graphql'
 import { Types } from 'mongoose'
 import request from 'supertest'
 

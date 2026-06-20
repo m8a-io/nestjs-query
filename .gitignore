@@ -95,3 +95,8 @@ documentation/.docusaurus
 
 .nx/cache
 .nx/workspace-data
+
+.npmrc
+.claude/worktrees
+.nx/polygraph
+.nx/self-healing

@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-The `@ptc-org/nestjs-query-mongoose` package provides an implementation of `@ptc-org/nestjs-query-core` [QueryService](../../concepts/services.md).
+The `@m8a/nestjs-query-mongoose` package provides an implementation of `@m8a/nestjs-query-core` [QueryService](../../concepts/services.md).
 
 This package is built using [mongoose](https://mongoosejs.com/) and [@nestjs/mongoose](https://docs.nestjs.com/techniques/mongodb). If you are unfamiliar with them I suggest you read their documentation first.
 

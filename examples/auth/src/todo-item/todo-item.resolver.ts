@@ -1,7 +1,7 @@
 import { UseGuards, UseInterceptors } from '@nestjs/common'
 import { Args, Query, Resolver } from '@nestjs/graphql'
-import { Filter, InjectAssemblerQueryService, mergeFilter, mergeQuery, QueryService } from '@ptc-org/nestjs-query-core'
-import { AuthorizerFilter, AuthorizerInterceptor, ConnectionType, OperationGroup } from '@ptc-org/nestjs-query-graphql'
+import { Filter, InjectAssemblerQueryService, mergeFilter, mergeQuery, QueryService } from '@m8a/nestjs-query-core'
+import { AuthorizerFilter, AuthorizerInterceptor, ConnectionType, OperationGroup } from '@m8a/nestjs-query-graphql'
 
 import { JwtAuthGuard } from '../auth/jwt-auth.guard'
 import { TodoItemDTO } from './dto/todo-item.dto'

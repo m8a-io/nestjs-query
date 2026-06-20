@@ -1,5 +1,5 @@
 import { ID, ObjectType } from '@nestjs/graphql'
-import { FilterableField, FilterableUnPagedRelation } from '@ptc-org/nestjs-query-graphql'
+import { FilterableField, FilterableUnPagedRelation } from '@m8a/nestjs-query-graphql'
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm'
 
 import { PostEntity } from '../post/post.entity'

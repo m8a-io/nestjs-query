@@ -12,8 +12,8 @@ To use discriminated DTOs, you need to provide a `discriminateDTOs` configuratio
 Each discriminator in the array should specify the `DTOClass` and `EntityClass` for the concrete implementation.
 
 ```typescript
-import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql';
-import { NestjsQueryTypegooseModule } from '@ptc-org/nestjs-query-typegoose';
+import { NestjsQueryGraphQLModule } from '@m8a/nestjs-query-graphql';
+import { NestjsQueryTypegooseModule } from '@m8a/nestjs-query-typegoose';
 import { TodoItemDTO } from './todo-item/dto/todo-item.dto';
 import { TodoItemEntity } from './todo-item/entities/todo-item.entity';
 import { TodoTaskDTO } from './todo-item/dto/todo-task.dto';
@@ -64,7 +64,7 @@ First, create a custom service that extends the `AssemblerQueryService` and adds
 
 ```typescript
 // src/todo-item/todo-task.service.ts
-import { AssemblerQueryService, InjectQueryService, QueryService } from '@ptc-org/nestjs-query-core';
+import { AssemblerQueryService, InjectQueryService, QueryService } from '@m8a/nestjs-query-core';
 import { TodoTaskEntity } from './entities/todo-task.entity';
 import { TodoTaskDTO } from './dto/todo-task.dto';
 import { TodoTaskAssembler } from './todo-task.assembler';
@@ -98,11 +98,11 @@ Next, create a custom resolver that extends the `CRUDResolver` and adds your cus
 ```typescript
 // src/todo-item/todo-task.resolver.ts
 import { Resolver, Mutation } from '@nestjs/graphql';
-import { CRUDResolver } from '@ptc-org/nestjs-query-graphql';
+import { CRUDResolver } from '@m8a/nestjs-query-graphql';
 import { TodoTaskDTO } from './dto/todo-task.dto';
 import { TodoTaskService } from './todo-task.service';
 import { CreateTodoTaskInput } from './dto/create-todo-task.input';
-import { AssemblerQueryService, InjectQueryService } from '@ptc-org/nestjs-query-core';
+import { AssemblerQueryService, InjectQueryService } from '@m8a/nestjs-query-core';
 import { TodoTaskEntity } from './entities/todo-task.entity';
 
 @Resolver(() => TodoTaskDTO)
@@ -129,8 +129,8 @@ Finally, update your module configuration to use the new `ResolverClass`, `Servi
 
 ```typescript
 // src/app.module.ts
-import { NestjsQueryGraphQLModule, DiscriminateDTOsOpts } from '@ptc-org/nestjs-query-graphql';
-import { NestjsQueryTypegooseModule } from '@ptc-org/nestjs-query-typegoose';
+import { NestjsQueryGraphQLModule, DiscriminateDTOsOpts } from '@m8a/nestjs-query-graphql';
+import { NestjsQueryTypegooseModule } from '@m8a/nestjs-query-typegoose';
 import { TodoItemDTO } from './todo-item/dto/todo-item.dto';
 import { TodoItemEntity } from './todo-item/entities/todo-item.entity';
 import { TodoTaskDTO } from './todo-item/dto/todo-task.dto';

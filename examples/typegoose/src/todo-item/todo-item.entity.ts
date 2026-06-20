@@ -1,4 +1,4 @@
-import { ObjectId } from '@ptc-org/nestjs-query-graphql'
+import { ObjectId } from '@m8a/nestjs-query-graphql'
 import { modelOptions, Prop, Ref } from '@typegoose/typegoose'
 import { Base } from '@typegoose/typegoose/lib/defaultClasses'
 import { Types } from 'mongoose'

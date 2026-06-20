@@ -121,7 +121,7 @@ Now that we have the relationships defined, we can add the `@Relation` and `@Con
 
 
 ```ts title="todo-item/todo-item.dto.ts"
-import { FilterableField, IDField, KeySet, Connection } from '@ptc-org/nestjs-query-graphql';
+import { FilterableField, IDField, KeySet, Connection } from '@m8a/nestjs-query-graphql';
 import { ObjectType, ID, GraphQLISODateTime, Field } from '@nestjs/graphql';
 import { SubTaskDTO } from '../../sub-task/dto/sub-task.dto';
 
@@ -167,7 +167,7 @@ export class TodoItemDTO {
 
 
 ```ts title="sub-task/sub-task.dto.ts"
-import { FilterableField, IDField, KeySet, Relation } from '@ptc-org/nestjs-query-graphql';
+import { FilterableField, IDField, KeySet, Relation } from '@m8a/nestjs-query-graphql';
 import { ObjectType, ID, GraphQLISODateTime } from '@nestjs/graphql';
 import { TodoItemDTO } from '../../todo-item/dto/todo-item.dto';
 
@@ -324,7 +324,7 @@ Now that we have the relationship defined, we can add the `@Connection` to our D
 
 
 ```ts title="todo-item/todo-item.dto.ts"
-import { FilterableField, IDField, KeySet, Connection } from '@ptc-org/nestjs-query-graphql';
+import { FilterableField, IDField, KeySet, Connection } from '@m8a/nestjs-query-graphql';
 import { ObjectType, ID, GraphQLISODateTime, Field } from '@nestjs/graphql';
 import { TagDTO } from '../../tag/dto/tag.dto';
 
@@ -369,7 +369,7 @@ export class TodoItemDTO {
 
 
 ```ts title="tag/tag.dto.ts"
-import { FilterableField, IDField, KeySet, Connection } from '@ptc-org/nestjs-query-graphql';
+import { FilterableField, IDField, KeySet, Connection } from '@m8a/nestjs-query-graphql';
 import { ObjectType, ID, GraphQLISODateTime } from '@nestjs/graphql';
 import { TodoItemDTO } from '../../todo-item/dto/todo-item.dto';
 
@@ -411,8 +411,8 @@ To use discriminators you need to define them in your `NestjsQueryTypegooseModul
 When working with discriminators, `nestjs-query` requires you to provide a service class for each discriminated entity. This is necessary for the auto-generated resolvers to be created correctly. These service classes are also the perfect place to add any custom business logic for your discriminated entities.
 
 ```ts title="todo-item/todo-item.module.ts"
-import { NestjsQueryGraphQLModule } from '@ptc-org/nestjs-query-graphql';
-import { NestjsQueryTypegooseModule, TypegooseQueryService } from '@ptc-org/nestjs-query-typegoose';
+import { NestjsQueryGraphQLModule } from '@m8a/nestjs-query-graphql';
+import { NestjsQueryTypegooseModule, TypegooseQueryService } from '@m8a/nestjs-query-typegoose';
 import { Module } from '@nestjs/common';
 import { TodoItemEntity } from './entities/todo-item.entity';
 import { TodoTaskEntity } from './entities/todo-task.entity';

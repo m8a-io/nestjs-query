@@ -3,48 +3,48 @@ title: Install
 sidebar_label: Install
 ---
 
-## @ptc-org/nestjs-query-core
+## @m8a/nestjs-query-core
 
 ```sh
-npm i @ptc-org/nestjs-query-core @nestjs/common class-transformer
+npm i @m8a/nestjs-query-core @nestjs/common class-transformer
 ```
 
-## @ptc-org/nestjs-query-graphql
+## @m8a/nestjs-query-graphql
 
 ```sh
-npm i @ptc-org/nestjs-query-graphql @nestjs/common @nestjs/graphql graphql graphql-subscriptions class-transformer class-validator dataloader
+npm i @m8a/nestjs-query-graphql @nestjs/common @nestjs/graphql graphql graphql-subscriptions class-transformer class-validator dataloader
 ```
 
-**NOTE** `@ptc-org/nestjs-query-graphql` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
+**NOTE** `@m8a/nestjs-query-graphql` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
 
-## @ptc-org/nestjs-query-typeorm
+## @m8a/nestjs-query-typeorm
 
 ```sh
-npm i @ptc-org/nestjs-query-typeorm @nestjs/common @nestjs/typeorm class-transformer typeorm
+npm i @m8a/nestjs-query-typeorm @nestjs/common @nestjs/typeorm class-transformer typeorm
 ```
 
-**NOTE** `@ptc-org/nestjs-query-typeorm` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
+**NOTE** `@m8a/nestjs-query-typeorm` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
 
-## @ptc-org/nestjs-query-sequelize
+## @m8a/nestjs-query-sequelize
 
 ```sh
-npm i @ptc-org/nestjs-query-sequelize @nestjs/common @nestjs/sequelize sequelize sequelize-typescript
+npm i @m8a/nestjs-query-sequelize @nestjs/common @nestjs/sequelize sequelize sequelize-typescript
 ```
 
-**NOTE** `@ptc-org/nestjs-query-sequelize` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
+**NOTE** `@m8a/nestjs-query-sequelize` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
 
-## @ptc-org/nestjs-query-mongoose
+## @m8a/nestjs-query-mongoose
 
 ```sh
-npm i @ptc-org/nestjs-query-mongoose @nestjs/common @nestjs/mongoose mongoose mongodb
+npm i @m8a/nestjs-query-mongoose @nestjs/common @nestjs/mongoose mongoose mongodb
 ```
 
-**NOTE** `@ptc-org/nestjs-query-mongoose` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
+**NOTE** `@m8a/nestjs-query-mongoose` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
 
-## @ptc-org/nestjs-query-typegoose
+## @m8a/nestjs-query-typegoose
 
 ```sh
-npm i @ptc-org/nestjs-query-typegoose @nestjs/common @typegoose/typegoose nestjs-typegoose mongoose mongodb
+npm i @m8a/nestjs-query-typegoose @nestjs/common @typegoose/typegoose nestjs-typegoose mongoose mongodb
 ```
 
-**NOTE** `@ptc-org/nestjs-query-typegoose` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.
+**NOTE** `@m8a/nestjs-query-typegoose` has opted for peer dependencies to follow nest conventions and to prevent duplicate installations of packages.

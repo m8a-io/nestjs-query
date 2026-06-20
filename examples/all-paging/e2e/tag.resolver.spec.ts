@@ -1,6 +1,6 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common'
 import { Test } from '@nestjs/testing'
-import { CursorConnectionType, OffsetConnectionType } from '@ptc-org/nestjs-query-graphql'
+import { CursorConnectionType, OffsetConnectionType } from '@m8a/nestjs-query-graphql'
 import request from 'supertest'
 import { DataSource } from 'typeorm'
 
